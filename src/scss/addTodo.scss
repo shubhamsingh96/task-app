@@ -1,0 +1,137 @@
+@import "./_variables.scss";
+
+.addTodo__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 10px;
+
+  @media screen and (max-width: "600px") {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  input[type="text"] {
+    padding: 4px 8px 2px 0;
+    border: none;
+    font-size: 16px;
+    line-height: 17px;
+    flex: 1;
+    margin-right: 25px;
+
+    @media screen and (max-width: "600px") {
+      margin-top: 15px;
+      width: 100%;
+      margin-right: 0;
+      padding: 5px 0;
+    }
+  }
+}
+
+.addTodo {
+  box-shadow: $boxShadow;
+  min-height: 200px;
+  min-width: 60vw;
+  max-width: 800px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: white;
+  margin: 0 15px;
+
+  @media screen and (max-width: "600px") {
+    width: 280px;
+  }
+
+  &__options {
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: "600px") {
+      margin: 10px 0;
+    }
+  }
+
+  &__input {
+    background-color: whitesmoke;
+    min-height: 105px;
+    max-height: 250px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 15px 10px;
+    outline: none;
+    overflow-y: auto;
+
+    &:empty::before {
+      content: attr(data-ph);
+      color: gray;
+    }
+  }
+
+  &__btn__wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__btn {
+    background-color: $purple-color;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 800;
+    padding: 8px 20px;
+    margin: 10px 10px 10px 0;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+  }
+}
+
+.create-todo-btn {
+  height: 40px;
+  width: 150px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-left: 10px;
+  background-color: $purple-color;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    margin-left: 10px;
+  }
+}
+
+.status-toggle {
+  margin-left: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  span {
+    color: green;
+    font-size: 16px;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: 20px;
+    border-radius: 40px;
+    margin-left: 10px;
+    font-weight: 800;
+  }
+}
+
+.status-toggle.active {
+  span {
+    color: red;
+  }
+}

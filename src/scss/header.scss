@@ -1,0 +1,79 @@
+@import "./variables";
+
+.header {
+  height: 50px;
+  display: flex;
+  width: 100%;
+  box-shadow: $boxShadow;
+  align-items: center;
+
+  &-title{
+    flex: 1;
+    margin-left: 20px;
+  }
+}
+
+.filter {
+  height: 34px;
+  font-size: 14px;
+  line-height: 1.2;
+  border: 1px solid rgba(#cbcbcb,0.5);
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 120px;
+  margin-right: 20px;
+  padding:0 10px;
+
+  p{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex:1;
+    height: 100%;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  img{
+    height: 15px;
+    width: 15px;
+  }
+
+}
+
+.filter-list{
+  padding: 0;
+  // box-shadow: $boxShadow;
+  box-shadow: 0 0 2px rgba(#333,0.1);
+  height: 82px;
+  width: 120px;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background-color: white;
+  z-index: 10;
+  li {
+    list-style-type: none;
+    border: none;
+    border-bottom: 2px solid rgba(#cbcbcb,0.5);
+    padding: 5px 10px;
+    cursor: pointer;
+
+    &:hover{
+      background-color: whitesmoke;
+    }
+  }
+}
+
+
+.custom-backdrop{
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: 9;
+}
