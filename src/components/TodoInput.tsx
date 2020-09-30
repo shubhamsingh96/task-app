@@ -28,6 +28,7 @@ const TodoInput:React.FC<TodoInputProp> = ({addTodo,closeModal,selectedTodo,dele
     dueDate:dayjs().format('YYYY-MM-DD'),
     completed:false,
   })
+  const [error, setError] = useState('')
 
   useEffect(() => {
 
@@ -45,7 +46,14 @@ const TodoInput:React.FC<TodoInputProp> = ({addTodo,closeModal,selectedTodo,dele
   }, [selectedTodo])
 
   const handleSubmit = () => {
-    if(todoInputRef.current && todoInputRef.current.innerText !== ''){
+    if(state.taskName === '' || state.taskName.trim() === ''){
+      return setError('Task name is required');
+    }
+    if(todoInputRef.current && (todoInputRef.current.innerText === '' || todoInputRef.current.innerText.trim() === '')){
+      return setError('Task content is required');
+    }
+    
+    if(todoInputRef.current){
       const newTodo:TodoType = {
         id: state.id !=='' ? state.id : generate(),
         completed:state.completed,
@@ -70,10 +78,21 @@ const TodoInput:React.FC<TodoInputProp> = ({addTodo,closeModal,selectedTodo,dele
     closeModal()
   }
 
+  const handleTaskName = (e:any) => {
+    const filter = /[a-zA-Z]/;
+    if(!filter.test(e.key)){
+     e.preventDefault();
+    }
+    
+  }
+
   return (
     <article className='addTodo'>
     <header className='addTodo__header'>
-      <input type="text" placeholder='Task Name' maxLength={62} value={state.taskName} onChange={({target:{value}})=>setState({...state,taskName:value})}/>
+      <input type="text" placeholder='Task Name' maxLength={62} value={state.taskName} 
+      onChange={({target:{value}})=>setState({...state,taskName:value})}
+      onKeyDown={handleTaskName}
+      />
       <article className='addTodo__options'>
       <div>
        <input type="date" name="asdas" id="" value={state.dueDate} onChange={({target:{value}})=>setState({...state,dueDate:value})} />
@@ -84,6 +103,7 @@ const TodoInput:React.FC<TodoInputProp> = ({addTodo,closeModal,selectedTodo,dele
       </article>
     </header>
     <div className='addTodo__input' data-ph='Task content' ref={todoInputRef} contentEditable={true} />
+  <p className='error-message'>{error}</p>
     <div className='addTodo__btn__wrapper'>
     <button className='addTodo__btn' onClick={handleSubmit}>{state.id !=='' ? 'UPDATE' : 'ADD'}</button>
     {state.id !=='' && <button className='addTodo__btn' onClick={handleTaskDelete}>DELETE</button>}
