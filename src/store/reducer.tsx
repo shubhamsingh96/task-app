@@ -20,6 +20,7 @@ const initialState:InitialStateType = {
   modalType:0,
 }
 
+
 const reducer = (state=initialState,action:any) => {
  switch (action.type) {
    case OPEN_MODAL: return {...state,modalStatus:true,modalType:action.modalType}

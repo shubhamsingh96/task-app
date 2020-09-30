@@ -85,7 +85,7 @@ const TodoInput:React.FC<TodoInputProp> = ({addTodo,closeModal,selectedTodo,dele
     </header>
     <div className='addTodo__input' data-ph='Task content' ref={todoInputRef} contentEditable={true} />
     <div className='addTodo__btn__wrapper'>
-    <button className='addTodo__btn' onClick={handleSubmit}>ADD</button>
+    <button className='addTodo__btn' onClick={handleSubmit}>{state.id !=='' ? 'UPDATE' : 'ADD'}</button>
     {state.id !=='' && <button className='addTodo__btn' onClick={handleTaskDelete}>DELETE</button>}
     
     </div>
